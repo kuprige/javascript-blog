@@ -7,7 +7,6 @@ const titleClickHandler = function (event) {
   event.preventDefault();
   const clickedElement = this;
   console.log("Link was clicked!");
-  console.log(MouseEvent + ".");
 
   const activeLinks = document.querySelectorAll(".titles a.active");
 
@@ -15,7 +14,7 @@ const titleClickHandler = function (event) {
     activeLink.classList.remove("active");
   }
 
-  console.log("clickedElement (with plus):", clickedElement);
+  console.log("clickedElement ", clickedElement);
   clickedElement.classList.add("active");
 
   const activeArticles = document.querySelectorAll(".posts article.active");
