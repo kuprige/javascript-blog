@@ -68,6 +68,7 @@ function generateTitleLinks(customSelector = "") {
     titleList.innerHTML = titleList.innerHTML + linkHTML;
     html = html + linkHTML;
   }
+  
   titleList.innerHTML = html;
 
   const links = document.querySelectorAll(".titles a");
@@ -78,3 +79,5 @@ function generateTitleLinks(customSelector = "") {
 }
 
 generateTitleLinks();
+
+
