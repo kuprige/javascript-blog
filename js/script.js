@@ -36,8 +36,8 @@ for (let link of links) {
 const optArticleSelector = ".post",
   optTitleSelector = ".post-title",
   optTitleListSelector = ".titles",
-  optArticleTagsSelector = ".post-tags .list",
-  optArticleAuthorSelector = ".post-author";
+  optArticleTagsSelector = ".post-tags .list";
+//optArticleAuthorSelector = ".post-author";
 
 function generateTitleLinks(customSelector = "") {
   const titleList = document.querySelector(optTitleListSelector);
@@ -98,8 +98,7 @@ function generateTags() {
     console.log(articleTagsArray);
 
     for (let tag of articleTagsArray) {
-      const linkHTML =
-        '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
+      const linkHTML ='<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
       console.log(linkHTML);
     }
     tagsWrapperList.innerHTML = html;
@@ -139,12 +138,7 @@ const tagClickHandler = function (event) {
 };
 
 function addClickListenersToTags() {
-  const href = clickedElement.getAttribute("href");
-  console.log(href);
-
-  const targetTagLinks = document.querySelectorAll(
-    'post-tags .list[data-tags~="' + tag + '"]'
-  );
+  const targetTagLinks = document.querySelectorAll('post-tags .list[data-tags~="' + tag + '"]');
   console.log(targetTagLinks);
 
   for (let targetTagLink of targetTagLinks) {
