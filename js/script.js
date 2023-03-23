@@ -101,9 +101,6 @@ function generateTags() {
       const linkHTML =
         '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
       console.log(linkHTML);
-
-      tagsWrapperList.innerHTML = tagsWrapperList.innerHTML + linkHTML;
-      html = html + linkHTML;
     }
     tagsWrapperList.innerHTML = html;
   }
@@ -117,7 +114,6 @@ const tagClickHandler = function (event) {
   event.preventDefault();
   const clickedElement = this;
   console.log("Tag was clicked");
-  console.log(MouseEvent + ".");
 
   const href = clickedElement.getAttribute("href");
   console.log(href);
@@ -140,91 +136,91 @@ const tagClickHandler = function (event) {
   }
 
   generateTitleLinks('[data-tags~="' + tag + '"]');
-  tagClickHandler();
 };
 
 function addClickListenersToTags() {
   const href = clickedElement.getAttribute("href");
   console.log(href);
 
-  const targetTagLinks = article.querySelectorAll('a[href="' + href + '"]');
+  const targetTagLinks = document.querySelectorAll(
+    'post-tags .list[data-tags~="' + tag + '"]'
+  );
   console.log(targetTagLinks);
 
   for (let targetTagLink of targetTagLinks) {
     targetTagLink.addEventListener("click", tagClickHandler);
-    tagClickHandler();
   }
 }
 addClickListenersToTags();
 
-//generateAuthors
-function generateAuthors() {
-  const authors = document.querySelectorAll(".post-author");
+// //generateAuthors
+// function generateAuthors() {
+//   const authors = document.querySelectorAll(".post-author");
 
-  for (let author of authors) {
-    author.addEventListener("click", titleClickHandler);
-  }
+//   for (let author of authors) {
+//     author.addEventListener("click", titleClickHandler);
+//   }
 
-  let html = "";
+//   let html = "";
 
-  const authorTags = article.getAttribute("data-author");
-  console.log(authorTags);
+//   const authorTags = article.getAttribute("data-author");
+//   console.log(authorTags);
 
-  for (let tag of authorsTagsArray) {
-    const linkHTML =
-      '<li><a href="tag-' + tag + '"><span>' + tag + "</span></a></li>";
-    console.log(linkHTML);
+//   for (let tag of authorsTagsArray) {
+//     const linkHTML =
+//       '<li><a href="tag-' + tag + '"><span>' + tag + "</span></a></li>";
+//     console.log(linkHTML);
 
-    tagsWrapperList.innerHTML = tagsWrapperList.innerHTML + linkHTML;
-    html = html + linkHTML;
-  }
-  tagsWrapperList.innerHTML = html;
+//     tagsWrapperList.innerHTML = tagsWrapperList.innerHTML + linkHTML;
+//     html = html + linkHTML;
+//   }
+//   tagsWrapperList.innerHTML = html;
 
-  titleList.innerHTML = html;
-}
+//   titleList.innerHTML = html;
+// }
 
-generateAuthors();
+// generateAuthors();
 
-// authorClickHandler
-const authorClickHandler = function (event) {
-  event.preventDefault();
-  const clickedElement = this;
-  console.log("Tag was clicked");
-  console.log(MouseEvent + ".");
+// // authorClickHandler
+// const authorClickHandler = function (event) {
+//   event.preventDefault();
+//   const clickedElement = this;
+//   console.log("Tag was clicked");
+//   console.log(MouseEvent + ".");
 
-  const href = clickedElement.getAttribute("href");
-  console.log(href);
+//   const href = clickedElement.getAttribute("href");
+//   console.log(href);
 
-  const tag = href.replace("#tag-", "");
-  console.log(tag);
+//   const tag = href.replace("#tag-", "");
+//   console.log(tag);
 
-  const activeTagLinks = article.querySelectorAll('a.active[href^="#tag-"]');
-  console.log(activeTagLinks);
+//   const activeTagLinks = article.querySelectorAll('a.active[href^="#tag-"]');
+//   console.log(activeTagLinks);
 
-  for (let activeTagLink of activeTagLinks) {
-    activeTagLink.classList.remove("active");
-  }
+//   for (let activeTagLink of activeTagLinks) {
+//     activeTagLink.classList.remove("active");
+//   }
 
-  const targetTagLinks = article.querySelectorAll('a[href="' + href + '"]');
-  console.log(targetTagLinks);
+//   const targetTagLinks = article.querySelectorAll('a[href="' + href + '"]');
+//   console.log(targetTagLinks);
 
-  for (let targetTagLink of targetTagLinks) {
-    targetTagLink.classList.add("active");
-  }
-  generateTitleLinks('[data-author="' + tag + '"]');
-  authorClickHandler();
-};
-//addClickListenersToAuthors
-function addClickListenersToAuthors() {
-  const href = clickedElement.getAttribute("href");
-  console.log(href);
+//   for (let targetTagLink of targetTagLinks) {
+//     targetTagLink.classList.add("active");
+//   }
+//   generateTitleLinks('[data-author="' + tag + '"]');
+//   authorClickHandler();
+// };
+// //addClickListenersToAuthors
+// function addClickListenersToAuthors() {
+//   const href = clickedElement.getAttribute("href");
+//   console.log(href);
 
-  const targetTagLinks = article.querySelectorAll('a[href="' + href + '"]');
-  console.log(targetTagLinks);
+//   const targetTagLinks = article.querySelectorAll('a[href="' + href + '"]');
+//   console.log(targetTagLinks);
 
-  for (let targetTagLink of targetTagLinks) {
-    targetTagLink.addEventListener("click", authorClickHandler);
-    authorClickHandler();
-  }
-}
-addClickListenersToAuthors();
+//   for (let targetTagLink of targetTagLinks) {
+//     targetTagLink.addEventListener("click", authorClickHandler);
+//     authorClickHandler();
+//   }
+// }
+// addClickListenersToAuthors();
