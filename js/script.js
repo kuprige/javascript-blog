@@ -139,9 +139,7 @@ const tagClickHandler = function (event) {
 };
 
 function addClickListenersToTags() {
-  const targetTagLinks = document.querySelectorAll(
-    'post-tags .list[data-tags~="' + tag + '"]'
-  );
+  const targetTagLinks = document.querySelectorAll('post-tags .list[data-tags~="' + tag + '"]');
   console.log(targetTagLinks);
 
   const tags = document.querySelectorAll(".post-tags list");
