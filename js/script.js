@@ -58,12 +58,7 @@ function generateTitleLinks(customSelector = "") {
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
     console.log(articleTitle);
 
-    const linkHTML =
-      '<li><a href="#' +
-      articleId +
-      '"><span>' +
-      articleTitle +
-      "</span></a></li>";
+    const linkHTML ='<li><a href="#' + articleId +'"><span>' + articleTitle +"</span></a></li>";
     console.log(linkHTML);
 
     titleList.innerHTML = titleList.innerHTML + linkHTML;
@@ -98,9 +93,11 @@ function generateTags() {
     console.log(articleTagsArray);
 
     for (let tag of articleTagsArray) {
-      const linkHTML =
-        '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
+      const linkHTML ='<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
       console.log(linkHTML);
+
+      tagsWrapperList.innerHTML = tagsWrapperList.innerHTML + linkHTML;
+      html = html + linkHTML;
     }
     tagsWrapperList.innerHTML = html;
   }
