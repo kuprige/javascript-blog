@@ -1,3 +1,5 @@
+'use strict';
+
 //titleClickHandler
 const titleClickHandler = function (event) {
   event.preventDefault();
@@ -194,3 +196,4 @@ const authorClickHandler = function (event) {
 
   generateTitleLinks('[data-author="' + author + '"]');
 };
+authorClickHandler();
