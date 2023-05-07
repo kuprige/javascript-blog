@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 //titleClickHandler
 const titleClickHandler = function (event) {
@@ -39,7 +39,8 @@ const optArticleSelector = ".post",
   optTitleSelector = ".post-title",
   optTitleListSelector = ".titles",
   optArticleTagsSelector = ".post-tags .list",
-  optArticleAuthorSelector = ".post-author";
+  optArticleAuthorSelector = ".post-author",
+  optTagsListSelector = ".tags.list";
 
 function generateTitleLinks(customSelector = "") {
   const titleList = document.querySelector(optTitleListSelector);
@@ -83,9 +84,19 @@ function generateTitleLinks(customSelector = "") {
 
 generateTitleLinks();
 
+function calculateTagsParams(tags) {
+  const params = { min: 0, max: 99999 };
+
+  for (let tag in tags) {
+    console.log(tag + " is used " + tags[tag] + " times");
+  }
+
+  return params;
+}
 //generateTags
 
 function generateTags() {
+  let allTags = {};
   const articles = document.querySelectorAll(optArticleSelector);
 
   for (let article of articles) {
@@ -104,9 +115,26 @@ function generateTags() {
         '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
       console.log(linkHTML);
 
+      if (!allTags[tag]) {
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
+      }
       html = html + linkHTML;
     }
     tagsWrapperList.innerHTML = html;
+    const tagList = document.querySelector(optTagsListSelector);
+
+    const tagsParams = calculateTagsParams(allTags);
+    console.log("tagsParams:", tagsParams);
+
+    let allTagsHTML = "";
+
+    for (let tag in allTags) {
+      allTagsHTML += tag + " (" + allTags[tag] + ") ";
+    }
+
+    tagList.innerHTML = allTagsHTML;
   }
 }
 
@@ -165,11 +193,11 @@ function generateAuthors() {
     console.log(articleAuthor);
 
     const linkHTML =
-      '<li><a href="#author-' +
+      '<a href="#author-' +
       articleAuthor +
       '"><span>' +
       articleAuthor +
-      "</span></a></li>";
+      "</span></a>";
     console.log(linkHTML);
 
     authorWrapper.innerHTML = linkHTML;
@@ -196,4 +224,14 @@ const authorClickHandler = function (event) {
 
   generateTitleLinks('[data-author="' + author + '"]');
 };
-authorClickHandler();
+
+function addClickListenersToAuthors() {
+  const activeTagLinks = document.querySelectorAll("p.post-author");
+  console.log(activeTagLinks);
+
+  for (let activeTagLink of activeTagLinks) {
+    activeTagLink.addEventListener("click", authorClickHandler);
+  }
+}
+
+addClickListenersToAuthors();
