@@ -121,5 +121,38 @@ body {
     margin: 0 10px 0 0;
   }
 }
+// Zdefiniuj rozmiary tagów
+.tag-size-small {
+  font-size: 80%;
+  color: #ff5733;
+}
 
+.tag-size-medium {
+  font-size: 100%;
+  color: #7fdbff;
+}
+
+.tag-size-large {
+  font-size: 120%;
+  color: #85144b;
+}
+
+// Wyświetl tagi inline'owo
+.post-tags .list li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+// Użyj klas tag-size-X do wyświetlania tagów w różnych rozmiarach
+.post-tags .list .tag-size-small {
+  @extend .tag-size-small;
+}
+
+.post-tags .list .tag-size-medium {
+  @extend .tag-size-medium;
+}
+
+.post-tags .list .tag-size-large {
+  @extend .tag-size-large;
+}
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MifQ== */
