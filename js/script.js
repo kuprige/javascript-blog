@@ -226,7 +226,7 @@ const authorClickHandler = function (event) {
 };
 
 function addClickListenersToAuthors() {
-  const activeTagLinks = document.querySelectorAll("p.post-author");
+  const activeTagLinks = document.querySelectorAll("a.post-author");
   console.log(activeTagLinks);
 
   for (let activeTagLink of activeTagLinks) {
