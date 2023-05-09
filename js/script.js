@@ -118,24 +118,7 @@ function calculateTagClass(count, params) {
   return optCloudClassPrefix + classNumber;
 }
 
-for (let tag in allTags) {
-  const tagLinkHTML =
-    '<li><a class="' +
-    calculateTagClass(allTags[tag], tagsParams) +
-    '" href="#tag-' +
-    tag +
-    '">' +
-    tag +
-    " (" +
-    allTags[tag] +
-    ")</a></li> ";
-  console.log("tagLinkHTML:", tagLinkHTML);
-  allTagsHTML += tagLinkHTML;
-}
-
-tagList.innerHTML = allTagsHTML;
-
-// generateTags
+// generalTags
 
 function generateTags() {
   let allTags = {};
@@ -153,8 +136,7 @@ function generateTags() {
     console.log(articleTagsArray);
 
     for (let tag of articleTagsArray) {
-      const linkHTML =
-        '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
+      const linkHTML = `<li><a href="#tag-${tag}"><span>${tag}</span></a></li>`;
       console.log(linkHTML);
 
       if (!allTags[tag]) {
@@ -165,21 +147,30 @@ function generateTags() {
       html = html + linkHTML;
     }
     tagsWrapperList.innerHTML = html;
-    const tagList = document.querySelector(optTagsListSelector);
-
-    const tagsParams = calculateTagsParams(allTags);
-    console.log("tagsParams:", tagsParams);
-
-    let allTagsHTML = "";
-
-    for (let tag in allTags) {
-      const tagLink = document.createElement("a");
-      tagLink.setAttribute("href", "#tag-" + tag);
-      tagLink.textContent = tag + " (" + allTags[tag] + ") ";
-      allTagsHTML += tagLink.outerHTML;
-    }
-    tagList.innerHTML = allTagsHTML;
   }
+
+  const tagList = document.querySelector(optTagsListSelector);
+
+  const tagsParams = calculateTagsParams(allTags);
+  console.log("tagsParams:", tagsParams);
+
+  let allTagsHTML = "";
+
+  for (let tag in allTags) {
+    const tagLinkHTML = `
+      <li>
+        <a class="${calculateTagClass(
+          allTags[tag],
+          tagsParams
+        )}" href="#tag-${tag}">
+          ${tag} (${allTags[tag]})
+        </a>
+      </li>`;
+    console.log("tagLinkHTML:", tagLinkHTML);
+    allTagsHTML += tagLinkHTML;
+  }
+
+  tagList.innerHTML = allTagsHTML;
 }
 
 generateTags();
