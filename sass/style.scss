@@ -122,17 +122,17 @@ body {
   }
 }
 // Zdefiniuj rozmiary tagów
-.tag-size-small {
+.tag-size-3 {
   font-size: 80%;
   color: #ff5733;
 }
 
-.tag-size-medium {
+.tag-size-4 {
   font-size: 100%;
   color: #7fdbff;
 }
 
-.tag-size-large {
+.tag-size-5 {
   font-size: 120%;
   color: #85144b;
 }
@@ -144,15 +144,15 @@ body {
 }
 
 // Użyj klas tag-size-X do wyświetlania tagów w różnych rozmiarach
-.post-tags .list .tag-size-small {
-  @extend .tag-size-small;
+.post-tags .list .tag-size-3 {
+  @extend .tag-size-3;
 }
 
-.post-tags .list .tag-size-medium {
-  @extend .tag-size-medium;
+.post-tags .list .tag-size-4 {
+  @extend .tag-size-4;
 }
 
-.post-tags .list .tag-size-large {
-  @extend .tag-size-large;
+.post-tags .list .tag-size-5 {
+  @extend .tag-size-5;
 }
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MifQ== */
