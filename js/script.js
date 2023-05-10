@@ -213,40 +213,60 @@ function addClickListenersToTags() {
 
 addClickListenersToTags();
 
+function calculateAuthorsParams(authors) {
+  const counts = Object.values(authors);
+  const minCount = Math.min(...counts);
+  const maxCount = Math.max(...counts);
+  return { minCount, maxCount };
+}
+
 //generateAuthors
 function generateAuthors() {
+  let allAuthors = {};
   const articles = document.querySelectorAll(optArticleSelector);
-  const authorList = document.querySelector(optAuthorsListSelector);
-  const authors = {};
 
   for (let article of articles) {
-    const author = article.querySelector(optArticleAuthorSelector);
-    const authorName = author.innerHTML;
+    const authorWrapperList = article.querySelector(optArticleAuthorSelector);
 
-    if (!authors[authorName]) {
-      authors[authorName] = 1;
-    } else {
-      authors[authorName]++;
-    }
-  
-
-    const authorWrapper = article.querySelector("p.post-author");
-    console.log(authorWrapper);
+    let html = "";
 
     const articleAuthor = article.getAttribute("data-author");
-    console.log(articleAuthor);
 
     const linkHTML =
-        '<a href="#author-' +
-        articleAuthor +
-        '"><span>' +
-        articleAuthor +
-        "</span></a>";
-    console.log(linkHTML);
+      '<li><a href="#author-' + articleAuthor + '">' + articleAuthor + "</a></li>";
 
-    authorWrapper.innerHTML += linkHTML;
+    if (!allAuthors[articleAuthor]) {
+      allAuthors[articleAuthor] = 1;
+    } else {
+      allAuthors[articleAuthor]++;
+    }
+
+    html = html + linkHTML;
+
+    authorWrapperList.innerHTML = html;
   }
+
+  const authorList = document.querySelector(optAuthorsListSelector);
+
+  let allAuthorsHTML = "";
+
+  for (let author in allAuthors) {
+    const authorLinkHTML =
+      '<li><a class="' +
+      calculateTagClass(allAuthors[author], calculateAuthorsParams(allAuthors)) +
+      '" href="#author-' +
+      author +
+      '">' +
+      author +
+      " (" +
+      allAuthors[author] +
+      ")</a></li>";
+    allAuthorsHTML += authorLinkHTML;
+  }
+
+  authorList.innerHTML = allAuthorsHTML;
 }
+
 
 generateAuthors();
 
