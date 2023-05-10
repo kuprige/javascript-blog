@@ -121,47 +121,61 @@ function calculateTagClass(count, params) {
 
 // generateTags
 
-function generateTitleLinks(customSelector = "", tag = "") {
-  const articles = document.querySelectorAll(
-    optArticleSelector + customSelector
-  );
+function generateTags() {
+  let allTags = {};
+  const articles = document.querySelectorAll(optArticleSelector);
 
   for (let article of articles) {
-    const articleId = article.getAttribute("id");
-    const articleTitle = article.querySelector(optArticleTitleSelector).innerHTML;
-    const articleTags = article.getAttribute("data-tags");
+    const tagsWrapperList = article.querySelector(optArticleTagsSelector);
 
-    const articleTagsArray = articleTags.split(" ");
     let html = "";
 
-    if (!tag || articleTagsArray.includes(tag)) {
-      html =
-        '<li><a href="#' +
-        articleId +
-        '"><span>' +
-        articleTitle +
-        "</span></a></li>";
+    const articleTags = article.getAttribute("data-tags");
+    console.log(articleTags);
 
-      const linkList = document.querySelector(optTitleListSelector);
-      linkList.insertAdjacentHTML("beforeend", html);
+    const articleTagsArray = articleTags.split(" ");
+    console.log(articleTagsArray);
+
+    for (let tag of articleTagsArray) {
+      const linkHTML =
+        '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>";
+      console.log(linkHTML);
+
+      if (!allTags[tag]) {
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
+      }
+      html = html + linkHTML;
+    } 
+    tagsWrapperList.innerHTML = html;
+    const tagList = document.querySelector(optTagsListSelector);
+
+    const tagsParams = calculateTagsParams(allTags);
+    console.log("tagsParams:", tagsParams);
+
+    let allTagsHTML = "";
+
+    for (let tag in allTags) {
+      const tagLinkHTML =
+        '<li><a class="' +
+        calculateTagClass(allTags[tag], tagsParams) +
+        '" href="#tag-' +
+        tag +
+        '">' +
+        tag +
+        " (" +
+        allTags[tag] +
+        ")</a></li> ";
+      console.log("tagLinkHTML:", tagLinkHTML);
+      allTagsHTML += tagLinkHTML;
     }
+
+    tagList.innerHTML = allTagsHTML;
   }
 }
 
-function addClickListenersToTags() {
-  const tagLinks = document.querySelectorAll("a[href^='#tag-']");
-
-  for (let tagLink of tagLinks) {
-    tagLink.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      const href = tagLink.getAttribute("href");
-      const tag = href.replace("#tag-", "");
-
-      generateTitleLinks("", tag);
-    });
-  }
-}
+generateTags();
 
 // tagClickHandler
 
