@@ -252,7 +252,7 @@ function generateAuthors() {
 
   for (let author in allAuthors) {
     const authorLinkHTML =
-      '<li><a class="' +
+      '<a class="' +
       calculateTagClass(allAuthors[author], calculateAuthorsParams(allAuthors)) +
       '" href="#author-' +
       author +
@@ -260,7 +260,7 @@ function generateAuthors() {
       author +
       " (" +
       allAuthors[author] +
-      ")</a></li>";
+      ")</a>";
     allAuthorsHTML += authorLinkHTML;
   }
 
