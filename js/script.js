@@ -203,7 +203,7 @@ const tagClickHandler = function (event) {
 };
 
 function addClickListenersToTags() {
-  const targetTagLinks = document.querySelectorAll(".post-tags .list a");
+  const targetTagLinks = document.querySelectorAll(".post-tags .list a,.list.tags a");
   console.log(targetTagLinks);
 
   for (let targetTagLink of targetTagLinks) {
