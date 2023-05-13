@@ -16,7 +16,11 @@ const templates = {
   authorCloudLink: Handlebars.compile(
     document.querySelector("#template-author-cloud-link").innerHTML
   ),
+  console.log("Handlebars")
 };
+
+
+
 
 // titleClickHandler
 const titleClickHandler = function (event) {
