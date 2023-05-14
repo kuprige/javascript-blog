@@ -13,15 +13,10 @@ const templates = {
   tagCloudLink: Handlebars.compile(
     document.querySelector("#template-tag-cloud-link").innerHTML
   ),
-  authorCloudLink: Handlebars.compile(
-    document.querySelector("#template-author-cloud-link").innerHTML
+  authorListLink: Handlebars.compile(
+    document.querySelector("#template-author-list-link").innerHTML
   ),
-  console.log("Handlebars")
 };
-
-
-
-
 // titleClickHandler
 const titleClickHandler = function (event) {
   event.preventDefault();

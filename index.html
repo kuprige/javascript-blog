@@ -446,7 +446,7 @@
     <script id="template-tag-cloud-link" type="text/x-handlebars-template">
       <li><a class="{{class}}" href="#tag-{{tag}}">{{tag}} ({{count}})</a></li>
     </script>
-    <script id="template-tag-cloud-link" type="text/x-handlebars-template">
+    <script id="template-tag-list" type="text/x-handlebars-template">
       {{#each tags}}
         <li>{{tag}}</li>
       {{/each}}
@@ -457,14 +457,10 @@
             ({{count}})</a></li>
       {{/each}}
     </script>
-    <script id="template-author-link" type="text/x-handlebars-template">
+    <script id="template-author-list" type="text/x-handlebars-template">
       {{#each authors}}
-        <li>
-          <a href="#{{author}}" class="{{className}}">
-            {{author}}
-            ({{count}})
-          </a>
-        </li>
+        <li><a href="#{{author}}" class="{{className}}">{{author}}
+            ({{count}})</a></li>
       {{/each}}
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
