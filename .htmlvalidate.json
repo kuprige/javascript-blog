@@ -6,4 +6,3 @@
     "void-style": ["warn", { "style": "selfclosing" }]
   }
 }
- 
