@@ -289,7 +289,6 @@ function generateAuthors() {
 }
 
 generateAuthors();
-
 // authorClickHandler
 function authorClickHandler(event) {
   event.preventDefault();
